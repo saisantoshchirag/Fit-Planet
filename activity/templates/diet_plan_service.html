@@ -1,0 +1,173 @@
+{% extends 'base_layout.html' %}
+{% block style %}
+        .plan-card{
+            float: left;
+            height: 300px;
+            width: 330px;
+            margin-top:60px;
+            margin-left: 50px;
+            border-radius: 12px;
+            background-color: #fff;
+            border: 1px solid #fff;
+            box-shadow: 0 8px 12px 0 rgba(0,0,0,.2);
+
+        }
+        .plan-card2{
+            float: right;
+            height: 300px;
+            width: 330px;
+            margin-top:60px;
+            margin-right: 550px;
+            border-radius: 12px;
+            background-color: #fff;
+            border: 1px solid #fff;
+            box-shadow: 0 8px 12px 0 rgba(0,0,0,.2);
+
+        }
+        .plan-card3{
+            float: right;
+            height: 300px;
+            width: 330px;
+            margin-top:-300px;
+            margin-right: 80px;
+            border-radius: 12px;
+            background-color: #fff;
+            border: 1px solid #fff;
+            box-shadow: 0 8px 12px 0 rgba(0,0,0,.2);
+
+        }
+        .plan-card-data{
+            padding-left: 20px;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        .plan-card-image{
+            height: 100px;
+            width: available;
+            background-color: #fb6340;
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+        }
+        .service-logo{
+            {#background-image: url("/media/healthy-food-icon-2.jpg");#}
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            background-color: #000000;
+            z-index: 99;
+            margin-top: -60px;
+            margin-left: 15px;
+
+        }
+        .service-logo-img{
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+            box-shadow: 0 8px 12px 0 rgba(0,0,0,.2);
+            {#margin-top: -30px;#}
+            {#margin-left: 15px;#}
+
+        }
+        .service-name{
+            z-index: 99;
+            margin-left: 130px;
+            font-size: 26px;
+            margin-top: -70px;
+            {#font: bold;#}
+        }
+        .page-header{
+
+            height: 100px;
+            width: 100%;
+            background-color: #0c5460;
+        }
+        .header-text{
+            font-size: 30px;
+            color: #FFFFFF;
+            {#margin-top: 30px;#}
+            padding-top: 30px;
+            padding-left: 30px;
+        }
+     {% endblock style %}
+
+{% block content %}
+
+
+    <div>
+        <div class="page-header">
+            <div class="header-text">
+            Services Offered
+            </div>
+        </div>
+        <a href="{{ url }}" style="color: #000000" target="_blank">
+        <div class="plan-card">
+            <div class="plan-card-image">
+
+            </div>
+            <div class="service-logo">
+                <img class="service-logo-img" src="/media/healthy-food-icon-2.jpg">
+            </div>
+            <div class="service-name">
+                <b> DIETPLAN.com</b>
+            </div>
+            <div class="plan-card-data">calories:{{ calories }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bmi:{{ bmi }}
+            <p>
+                + view diet plan<br>
+                + calculate calories and BMI<br>
+                + Free of cost
+
+            </p>
+
+            </div>
+        </div>
+        </a>
+
+        <div class="plan-card2">
+            <div class="plan-card-image">
+
+            </div>
+            <div class="service-logo">
+                <img class="service-logo-img" src="/media/healthy-eating-icon-2.jpg">
+            </div>
+            <div class="service-name">
+                <b> Healthyeat.com</b>
+            </div>
+            <div class="plan-card-data">calories:{{ calories }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bmi:{{ bmi }}
+            <p>
+                + view diet plan<br>
+                + calculate calories and BMI<br>
+                + Try premium for 30 days<br>
+                + Limited offer
+
+            </p>
+
+            </div>
+        </div>
+
+
+        <div class="plan-card3">
+            <div class="plan-card-image">
+
+            </div>
+            <div class="service-logo">
+                <img class="service-logo-img" src="/media/download.png">
+            </div>
+            <div class="service-name">
+                <b> ABC.com</b>
+            </div>
+            <div class="plan-card-data">calories:{{ calories }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bmi:{{ bmi }}
+            <p>
+                + Lorem ipsum<br>
+                + Lorem ipsum 123<br>
+                + ABCDEFGH<br>
+                + 30$ per month
+
+            </p>
+
+            </div>
+        </div>
+
+
+    </div>
+{% endblock content %}

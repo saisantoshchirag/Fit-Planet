@@ -1,0 +1,125 @@
+{% extends 'base_layout.html' %}
+{% load static from staticfiles %}
+
+{% block headblock %}
+    <style>
+
+        body{
+            background-color: #007d91;
+        }
+
+        .c1{
+            background-color: whitesmoke;
+            width: 75%;
+            border-radius: 30px;
+        }
+    .btn1 {
+            white-space: normal;
+            background-color: #007d91;
+            color: white;
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+            border-radius: 30px;
+            width: 150px;
+            margin-left: 10px;
+        }
+        .btn1:hover{
+            color:whitesmoke;background-color:black;text-align: center
+
+        }
+    </style>
+{% endblock headblock %}
+{% block content%}
+
+    <center>
+        <div class="c1">
+            <img src="{% static '1.png' %}" height="300px" width="400px">
+            <br>
+{#            <table>#}
+{#                <tr>#}
+{#                    <td class="table">#}
+{#                        Title#}
+{#                    </td>#}
+{#                    <td class="table">#}
+{#                        Exercise#}
+{#                    </td>#}
+{#                    <td class="table">#}
+{#                        Start Time#}
+{#                    </td>#}
+{#                    <td class="table">#}
+{#                        End Time#}
+{#                    </td>#}
+{#                    <td class="table">#}
+{#                        Calories Burnt#}
+{#                    </td>#}
+{#                </tr>#}
+{#                {% for act in activity%}#}
+{#                    <tr>#}
+{#                        <td>#}
+{#                            {{act.title}}#}
+{#                        </td>#}
+{#                        <td>#}
+{#                            {{act.type}}#}
+{#                        </td>#}
+{#                        <td>#}
+{#                            {{act.from_time}}#}
+{#                        </td>#}
+{#                        <td>#}
+{#                            {{act.to_time}}#}
+{#                        </td>#}
+{#                        <td>#}
+{#                            {{act.calories}}#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                    <br>#}
+{#                {% endfor %}#}
+{#                    </table>#}
+<table style="border-collapse: separate;border-spacing: 15px">
+<tr>
+<td>
+    Title
+</td>
+    <td>
+        Type
+    </td>
+    <td>
+        Start Time
+    </td>
+    <td>
+        End Time
+    </td>
+    <td>
+        Calories
+    </td>
+
+</tr>
+{% for act in activity %}
+    <tr>
+    <td>
+        {{ act.title }}, <br/>
+    </td>
+    <td>
+        {{ act.type }}
+    </td>
+        <td>
+        {{ act.from_time }}
+    </td>
+        <td>
+        {{ act.to_time }}
+    </td>
+    <td >
+        {{ act.calories }}
+    </td >
+    </tr>
+{% endfor %}
+</table>
+                    <a href="{% url 'activities:create' %}"><button class="btn1">Back</button></a>
+
+        </div>
+    </center>
+{% endblock %}

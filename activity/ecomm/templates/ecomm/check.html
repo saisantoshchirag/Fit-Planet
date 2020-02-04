@@ -1,0 +1,18 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+<button onclick="location.href='{% url 'ecomm:home' %}'">Go Back</button>
+
+{% if item %}
+    <div style="float: left; width: 100%; padding-left: 50px; padding-top: 20px">
+        <img style="float: left; width: 150px; height: 150px; padding-right: 20px" src="{{ item.image_url }}">
+            <div>
+                {{ item.eq_id }}
+                <p>{{ item.eq_name }}</p>
+                <p>Type:    {{ item.type }}</p>
+                <p>Cost:    {{ item.cost }}/-</p>
+            </div>
+    </div>
+{% else %}
+    <h3>This Item is not found</h3>
+{% endif %}
+{% endblock content %}

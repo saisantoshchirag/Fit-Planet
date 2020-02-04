@@ -1,0 +1,14 @@
+{% extends "base_layout.html" %}
+{% block name %}
+{% for object in myobjects %}
+
+    <h2>{{ object.title }}</h2>
+    <p>{{ object.content|linebreaks|truncatewords:30 }}</p>
+    <p><a href='{{ object.title }}'>View</a></p>
+<hr>
+    {% endfor %}
+
+{% endblock name %}
+
+
+

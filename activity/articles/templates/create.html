@@ -1,0 +1,14 @@
+{% extends "base_layout_trainer.html" %}
+{% block content %}
+
+<form method="POST" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+<br><br>
+    {{ form.as_p }}
+<button type="submit">post</button>
+</form>
+
+{% endblock content %}
+
+
+

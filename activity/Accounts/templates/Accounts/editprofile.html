@@ -1,0 +1,84 @@
+{% extends 'base_layout.html' %}
+{% load static from staticfiles %}
+{% block headblock %}
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <style>
+        body{
+                        background-color: #ebebeb ;
+
+            background-attachment: fixed;
+            background-size: 100%;
+            background-repeat: no-repeat ;
+        }
+        form{
+           margin-left: 350px;
+        }
+        form input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+            .button3,input[type="file"]{
+            background-color: #919191;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.5s;
+        }
+        .button3:hover{
+            background-color: #3474ff;
+        }
+
+        .div1{
+            margin-top: 15px;
+            width:40%;
+            height: 580px;
+            margin-left: 400px;
+            border-radius: 30px;
+            font-size: 17px;
+            color: #063e68;
+            text-shadow: 0 0 2px #e7e9ff;
+        }
+        img{
+            float: left;
+            height: 200px;
+            width: 200px;
+            margin-left: 25px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="div1">
+    <br>
+                <img  src="{{ user.userprofile.profile_pic.url }}"><br><br><br><br>
+
+        <form method="POST" action="{% url 'Accounts:editprofile' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                {{ uform }}
+                <br>{{ pform }}
+            </fieldset>
+            <center><br><br>
+            <input type="submit" class="button3" value="update">
+
+        </center>
+        </form>
+{#        <center><br><br>#}
+{#        <input type="submit" class="button3" value="update">#}
+{##}
+{#        </center>#}
+    </div>
+{% endblock %}

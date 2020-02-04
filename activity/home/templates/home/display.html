@@ -1,0 +1,133 @@
+
+{% extends 'base_layout.html' %}
+
+{#{% load static from staticfiles%}#}
+{% load staticfiles %}
+{% block headblock %}
+    <meta charset="UTF-8">
+{#    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">#}
+{#    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">#}
+{#    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">#}
+
+    <title>Display</title>
+    <style>
+   input[type=submit]{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+    input[type=submit]{-webkit-touch-callout:none;-webkit-user-select:none; -khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+    input[type=submit]{width:100%;text-align:left;padding:8px 16px}
+    input[type=submit]{white-space:normal}
+    input[type=submit]{width: 300px;margin-top: 9px;border-radius: 20px;}
+    input[type=submit]:hover{color:#000!important;background-color:#ccc!important}
+    .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color: #007d91 !important}
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <table>
+        <td>
+        <td style="width: 400px;vertical-align: top;text-align: center;margin-top: 30px" >
+            <form action="{% url 'home:display' %}" method="post" id="formName">
+                {% csrf_token %}
+                <br><br><br><br>
+                {#        <input type="checkbox" value="1" name="options[]" onclick="{% url 'home:dis_val' value %}"  id="checkbox" >Abdominals#}
+                <input type="submit" value="Abdominals" name="options[]" onclick="check()"  class="w3-teal"><br>
+                <input type="submit" value="Biceps" name="options[]" onclick="check()"   class="w3-teal"><br>
+                <input type="submit" value="calves" name="options[]" onclick="check()"   class=" w3-teal"><br>
+                <input type="submit" value="chest" name="options[]" onclick="check()" class="w3-teal"><br>
+                <input type="submit" value="ductors" name="options[]" onclick="check()"  class="w3-teal"><br>
+                <input type="submit" value="forearms" name="options[]" onclick="check()" class="w3-teal"><br>
+                <input type="submit" value="Glutes" name="options[]" onclick="check()"  class="w3-teal"><br>
+                <input type="submit" value="hamstrings" name="options[]" onclick="check()"  class="w3-teal"><br>
+                <input type="submit" value="lats" name="options[]" onclick="check()"  class="w3-teal"><br>
+                <input type="submit" value="lowerback" name="options[]" onclick="check()"  class="w3-button w3-teal"><br>
+                <input type="submit" value="middleback" name="options[]" onclick="check()"  class="w3-button w3-teal"><br>
+                <input type="submit" value="neck" name="options[]" onclick="check()"  class="w3-button w3-teal"><br>
+                <input type="submit" value="quadriceps" name="options[]" onclick="check()"  class="w3-button w3-teal"><br>
+                <input type="submit" value="shoulder" name="options[]" onclick="check()"  class="w3-button w3-teal"><br>
+                <input type="submit" value="traps" name="options[]" onclick="check()"  class="w3-button w3-teal"><br>
+                <input type="submit" value="triceps" name="options[]" onclick="check()" class="w3-button w3-teal"><br>
+                {#    <input type="submit"> Submit#}
+            </form>
+        </td>
+        {#            <img src="{% static '34 Sit-Up_1.jpg' %}" width="30px" height="30px">#}
+
+        <td style="width: 500px;height: 3000px;padding-left: 150px;margin-top: 0;">
+            {% for video in video_list %}
+                <h4>  <a href="{% url 'home:render' name=video.name %}">{{ video.name }} </a></h4>
+                <table>
+                    <tr>
+                        <td>
+                            <img src="{{ video.image1.url }}" width="50px" height="50px">
+                            <img src="{{ video.image2.url }}" width="50px" height="50px">
+                        </td>
+                        <td>
+                            <h6 >Equipment type: {{ video.equipment }} </h6>
+                            <h6 >Targeted Muscle: {{ video.muscle_type }}  </h6>
+                        </td>
+                    </tr>
+                </table>
+            {% endfor %}
+        </td>
+    </table>
+
+    <!-- {% if video_list.has_other_pages %}
+    <ul class="pagination">
+        {% if video_list.has_previous %}
+            <li><a href="?page={{ video_list.previous_page_number }}">&laquo;</a></li>
+{% else %}
+            <li class="disabled"><span> &laquo; </span></li>
+            {% endif %}
+    {% for i in video_list.paginator.page_range %}
+        {% if video_list.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a> </li>
+        {% endif %}
+    {% endfor %}
+    {% if video_list.has_next %}
+        <li><a href="?page={{ video_list.next_page_number }}">&raquo;</a></li>
+    {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+    </ul>
+    {% endif %}-->
+
+    <div class="w3-center w3-padding-32">
+        <div class="w3-bar">
+            {% if video_list.has_other_pages %}
+
+                {% if video_list.has_previous %}
+                    <a href="?page={{ video_list.previous_page_number }}" class="w3-bar-item w3-button w3-hover-black">&laquo;</a>
+                {% else %}
+                    <span class="w3-bar-item w3-button w3-hover-black">&laquo;</span>
+                {% endif %}
+                {% for i in video_list.paginator.page_range %}
+                    {% if video_list.number == i %}
+                        <span class="w3-bar-item w3-button w3-hover-black">{{ i }} </span>
+                    {% else %}
+                        <a href="?page={{ i }}" class="w3-bar-item w3-button w3-hover-black">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if video_list.has_next %}
+                    <a  href="?page={{ video_list.next_page_number }}" class="w3-bar-item w3-button w3-hover-black">&raquo;</a>
+                {% else %}
+                    <span class="w3-bar-item w3-button w3-hover-black">&raquo;</span>
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+    </div>
+
+
+
+    <script>
+        function check(){
+            document.getElementById("formName").submit();
+        }
+    </script>
+{% endblock %}

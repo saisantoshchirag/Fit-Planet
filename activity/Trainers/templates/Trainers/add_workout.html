@@ -1,0 +1,71 @@
+{% extends 'base_layout_trainer.html' %}
+{% block headblock %}
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="http://localhost:63342/Login_v1/Login_v1/images/img-01.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/vendor/bootstrap/css/bootstrap.min.css">
+
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/css/util.css">
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/css/main.css">
+<!--===============================================================================================-->
+    <style>
+       .login100-form{
+           width: 550px;
+            margin-top: -50px;
+           margin-right: -20px;
+       }
+        .wrap-input100{
+            width:250px;
+        }
+        .wrap-login100{
+            margin-top: -10px;
+            margin-left:20px;
+            width:1050px;
+            height: 1050px;
+        }
+        input[type='text']{
+            text-align: center;
+            height: 40px;
+            width: 280px;
+            background-color: #dadad0;
+            border-radius: 30px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>Add Workout</h1>
+    <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+                <div style="float: left;margin-left: -80px" class="login100-pic js-tilt" data-tilt>
+					<img src="/media/img-01.png" alt="IMG">
+				</div>
+    <form action="{% url 'add_workout' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div style="float: left;width: 250px;margin-right: 20px" class="wrap-input100 validate-input">
+            Video:{{ awform }}
+        </div>
+        <div class="container-login100-form-btn">
+						<button type="submit" name="submit" class="login100-form-btn" value="Upload" style="width:270px">
+							Upload
+						</button>
+					</div>
+
+
+
+    </form></div></div></div>
+{% endblock %}

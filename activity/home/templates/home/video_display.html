@@ -1,0 +1,23 @@
+{% extends 'base_layout.html' %}
+{% load static from staticfiles %}
+{% block headblock %}
+
+<meta charset="UTF-8">
+    <title>Title</title>
+{% endblock %}
+
+{% block content %}
+    <br>
+    {% for video in videos %}
+        <center><video width="500" height="380" controls>
+
+  <source src="{{ video.video.url }}" type="video/mp4">
+        </center>
+        </video>
+
+        <br><br>
+            <img src="{{ video.image1.url }}" width="350px" height="350px">
+            <img src="{{ video.image2.url }}" width="350px" height="350px" style="margin-left: 20px">
+
+    {% endfor %}
+{% endblock %}

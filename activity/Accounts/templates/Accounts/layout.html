@@ -1,0 +1,176 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .img123{
+            float: right;
+            height: 40px;
+            width: 40px;
+            margin-top: 5px;
+        }
+        { .topnav {}
+        {    overflow: hidden;}
+        {    width: 100%;}
+        {    top:10px;}
+        {    color: white;}
+        {    background-color: black;}
+
+        {#}#}
+
+        {#.bg-dark {#}
+        {#    background-color:darkred  !important;}
+        {##}
+        {#}#}
+        .navbar{
+           background-color:black;
+        }
+
+
+        ::placeholder{
+            color: #dbd9d9;
+        }
+
+
+        .button3 {
+
+            {#float: right;}
+            background: none;
+            border: none;
+            color: white;
+            {#margin-right: 0px;}
+            margin-left: 1350px;
+            {#margin-right: 200px;}
+            margin-top: 0px;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            {#margin: 3px 2px;}
+            cursor: pointer;
+            border-radius:4px;
+            transition: 0.5s;
+        }
+        .button2 {
+
+            {#float: right;}
+            background: none;
+            border: none;
+            color: white;
+            {#margin-right: 5px;}
+            {#margin-left: 10px;}
+            margin-top: 5px;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            {#margin: 3px 2px;}
+            cursor: pointer;
+            border-radius:4px;
+            transition: 0.5s;
+        }
+        .button1 {
+            background: none;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            {#margin: 4px 2px;}
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.5s;
+        }
+        .button4 {
+            background: none;
+            border: none;
+            color: white;
+            {#margin-right: 0px;}
+            {#margin-left: 50px;}
+            {#padding-right: 100px;}
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            {#margin: 4px 2px;}
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.5s;
+        }
+        .button1:hover {
+            background-color: #4a4646;
+        }
+        .button2:hover{
+            background-color: #4a4646;
+        }
+        .button3:hover{
+            background-color: #4a4646;
+        }
+        .button4:hover{
+            background-color: #4a4646;
+        }
+
+
+
+        {% block style %}
+        {% endblock style %}
+    </style>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+   <nav  class="navbar navbar-expand-lg navbar-dark ">
+
+       <div class="collapse navbar-collapse" id="navbarColor02">
+                <a href="{% url 'home' %}" > <button class="button1">Fit Planet </button></a>
+{#                <a href="{% url 'review' %}" > <button class="button1">Review </button></a>#}
+
+{#                 <select class="button1" onchange="location = this.value">#}
+{#                    <option selected disabled hidden class="button1">Sentiment Analysis</option>#}
+{#                     <option class="button1" value="{% url 'prediction' %}" >Single Predict   </option>#}
+{#                    <option class="button1" value="{% url 'batch_predict' %}">Batch Predict</option></a>#}
+{#                </select>#}
+{#                <select class="button1" onchange="location = this.value">#}
+{#                    <option selected disabled hidden class="button1">Credits</option>#}
+{#                     <option class="button1" value="{% url 'credits.index' %}" >Add/Redeem   </option>#}
+{#                    <option class="button1" value="{% url 'credits.statement' %}">Transactions</option></a>#}
+{#                </select>#}
+{#                <a href="{% url 'data_analysis' %}" > <button class="button1">Data Analysis </button></a>#}
+{#                <a href="{% url 'crdscr_main' %}" > <button class="button1">Crowdsourcing </button></a>#}
+
+                {% if not request.user.username %}
+
+                <a href="{% url 'Accounts:register' %}"><button class="button2">SignUp</button></a>
+                <a href="{% url 'Accounts:login' %}"><button class="button4" name="Login" value="Login"> Login</button></a>
+
+
+                {% else %}
+
+                <form class="button3" action="{% url 'Accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit"  style="background-color: transparent;color: #FFFFFF; border: none;">Logout </button>
+{#                      <button type="submit" class="btn btn-secondary my-2 my-sm-0" style="background-color: transparent;color: #FFFFFF; border: none;">Logout </button>#}
+                </form>
+                  <a href="{% url 'Accounts:profile' %}"><button class="button2"> {{request.user.username}}</button></a>
+
+                     {% endif %}
+        </div>
+
+    </nav>
+
+    {% block headblock %}
+    {% endblock headblock %}
+</head>
+<body>
+
+{#<div class="container">#}
+    {% block content %}
+    {% endblock content %}
+{#</div>#}
+</body>
+</html>

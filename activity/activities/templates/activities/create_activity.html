@@ -1,0 +1,173 @@
+{% extends 'base_layout.html' %}
+{% load static from staticfiles%}
+{% block headblock%}
+    <title>Activity</title>
+    <style>
+
+        body{
+            background-color: #007d91;
+        }
+    input[type=submit]{white-space:normal;background-color: #007d91;color: white}
+    input[type=submit]:hover{color:whitesmoke;background-color:black;text-align: center}
+        .btn1 {
+            white-space: normal;
+            background-color: #007d91;
+            color: white;
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+            border-radius: 30px;
+            width: 300px;
+        }
+        .btn1:hover{
+            color:whitesmoke;background-color:black;text-align: center
+
+        }
+        input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            background-color: #cbcbcb;
+            box-sizing: border-box;
+            font-size: 14px;
+            border-radius: 30px;
+            width: 300px;
+        }
+
+        select {
+            width: 258px;
+            position: relative;
+            left: -17px;
+            margin: 0;
+            border: 1px solid #DDE1E4;
+            border-top: none;
+            font-size:9pt;
+        }
+
+        datalist {
+            display: none;
+        }
+
+        option {
+            padding: 3px;
+        }
+
+        option:hover {
+            background-color: #11E8EA;
+        }
+        .input2{
+            width: 300px;
+            margin-top: 30px;
+        }
+    .create-article{
+        background-color: whitesmoke;
+        width: 60%;
+        height: 572px;
+        border-radius: 30px;
+
+    }
+    </style>
+    {#  <link href="./assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />#}
+{% endblock %}
+
+{% block content %}
+    <script>
+        button = document.querySelector('button');
+        datalist = document.querySelector('datalist');
+        select = document.querySelector('select');
+        options = select.options;
+
+        /* on arrow button click, show/hide the DDL*/
+        button.addEventListener('click', toggle_ddl);
+
+        function toggle_ddl() {
+            if (datalist.style.display === '') {
+                datalist.style.display = 'block';
+                this.textContent = "▲";
+                /* If input already has a value, select that option from DDL */
+                var val = input.value;
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].text === val) {
+                        select.selectedIndex = i;
+                        break;
+                    }
+                }
+            } else hide_select();
+        }
+
+        /* when user selects an option from DDL, write it to text field */
+        select.addEventListener('change', fill_input);
+
+        function fill_input() {
+            input.value = options[this.selectedIndex].value;
+            hide_select();
+        }
+
+        /* when user wants to type in text field, hide DDL */
+        input = document.querySelector('input');
+        input.addEventListener('focus', hide_select);
+
+        function hide_select() {
+            datalist.style.display = '';
+            button.textContent = "▼";
+        }
+    </script>
+
+<center>
+    <div class="create-article">
+        <h2> Create Activity</h2>
+        <form class="site-form"  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <form action="" method="post">
+
+{#                <label for="id_type">Type</label>#}
+
+                <input list=text_editors class="input2" name="type1" id="id_type" placeholder="Type">
+                <datalist id="text_editors">
+                    <select name="type" id="id_type">
+                        {% for type in types %}
+                            <option value="{{type}}">{{type}} </option>
+                        {% endfor %}
+                    </select>
+                </datalist>
+                <input type="text" class="input2" name="title" id="title" placeholder="Title" autocomplete="off">
+                <br>
+            <table>
+                <tr style="margin-left: 30px">
+                    <td>
+                <label for="from_time">Start time</label><br>
+                    </td>
+                    <td>
+                <label for="from_time">End time</label><br>
+                    </td>
+
+                </tr>
+                <tr style="margin-left: 30px">
+                    <td>
+                    <input type="datetime-local" name="from_time" id="from_time">
+                    </td>
+                    <td>
+                        <input type="datetime-local" name="to_time" id="to_time">
+                    </td>
+                        <br><br>
+                </tr>
+                            </table>
+                <br>
+                <input type="submit" value="Create">
+            </form>
+                <br>
+        </form><br>
+        <a href="{% url 'activities:view' %}"> <button class="btn1"> View activity </button> </a><br><br>
+
+    </div>
+</center>
+
+
+
+{% endblock %}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+body {
+  text-align: center;
+}
+
+.input2{
+  font-size: 12pt;
+}
+
+.input2 {
+  width: 250px;
+  height: 30px;
+  padding: 3px;
+  border: 1px solid #DDE1E4;
+}
+
+select {
+  width: 258px;
+  position: relative;
+  left: -17px;
+  margin: 0;
+  border: 1px solid #DDE1E4;
+  border-top: none;
+  font-size:9pt;
+}
+
+datalist {
+  display: none;
+}
+
+option {
+  padding: 3px;
+}
+
+option:hover {
+  background-color: #11E8EA;
+}
+
+
+h3,
+h4 {
+  text-align: center;
+}
+
+
+/* to hide datalist arrow in webkit */
+
+.input2::-webkit-calendar-picker-indicator {
+  display: none;
+}
+    </style>
+</head>
+<body>
+<script>
+    button = document.querySelector('button');
+datalist = document.querySelector('datalist');
+select = document.querySelector('select');
+options = select.options;
+
+/* on arrow button click, show/hide the DDL*/
+button.addEventListener('click', toggle_ddl);
+
+function toggle_ddl() {
+  if (datalist.style.display === '') {
+    datalist.style.display = 'block';
+    this.textContent = "▲";
+    /* If input already has a value, select that option from DDL */
+    var val = input.value;
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].text === val) {
+        select.selectedIndex = i;
+        break;
+      }
+    }
+  } else hide_select();
+}
+
+/* when user selects an option from DDL, write it to text field */
+select.addEventListener('change', fill_input);
+
+function fill_input() {
+  input.value = options[this.selectedIndex].value;
+  hide_select();
+}
+
+/* when user wants to type in text field, hide DDL */
+input = document.querySelector('input');
+input.addEventListener('focus', hide_select);
+
+function hide_select() {
+  datalist.style.display = '';
+  button.textContent = "▼";
+}
+</script>
+
+<input list=text_editors class="input2">
+<datalist id="text_editors">
+    <select multiple size=8>
+        <option value="Atom">Atom</option>
+        <option value="Brackets">Brackets</option>
+        <option value="Notepad ++">Notepad ++</option>
+        <option value="Notepad">Notepad</option>
+        <option value="Sublime Text">Sublime Text</option>
+        <option value="TextEdit">TextEdit</option>
+        <option value="TextMate">TextMate</option>
+        <option value="Wordpad">Wordpad </option>
+                <option value="Atom">Atom</option>
+        <option value="Brackets">Brackets</option>
+        <option value="Notepad ++">Notepad ++</option>
+        <option value="Notepad">Notepad</option>
+        <option value="Sublime Text">Sublime Text</option>
+        <option value="TextEdit">TextEdit</option>
+        <option value="TextMate">TextMate</option>
+        <option value="Wordpad">Wordpad </option>
+    </select>
+  </datalist>
+</body>
+</html>

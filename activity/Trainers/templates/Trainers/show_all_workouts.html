@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All workouts</title>
+</head>
+<body>
+    {% for workout in all_workouts %}<br>
+        name:{{ workout.workout_name }}<br><br>
+        url:{{ workout.workout_videofile.url }}<br><br><br>
+        <video width="400" controls controlsList="nodownload">
+          <source src="{{workout.workout_videofile.url}}" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>image:<img src="{{workout.image1}}">
+    {% endfor %}
+</body>
+</html>

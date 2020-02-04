@@ -1,0 +1,102 @@
+{% extends 'base_layout_trainer.html' %}
+{% block headblock %}
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="http://localhost:63342/Login_v1/Login_v1/images/img-01.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/vendor/bootstrap/css/bootstrap.min.css">
+
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/css/util.css">
+	<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/css/main.css">
+<!--===============================================================================================-->
+    <style>
+       .login100-form{
+           width: 300px;
+            margin-top: -50px;
+           margin-right: -20px;
+       }
+        .wrap-input100{
+            width:300px;
+        }
+        .wrap-login100{
+            margin-top: -10px;
+            width:750px;
+            height: 650px;
+        }
+        input[type='text']{
+            text-align: center;
+            vertical-align: center;
+            background-color: #dadad0;
+            height: 40px ;
+            width: 280px;
+            border-radius: 30px;
+            margin-bottom: 18px;
+        }
+        input[type='password']{
+            text-align: center;
+            height: 40px;
+            width: 280px;
+            background-color: #dadad0;
+            border-radius: 30px;
+        }
+    </style>
+{% endblock %}
+{% block content %}    <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+                <div style="float: left;margin-left: -80px" class="login100-pic js-tilt" data-tilt>
+					<img src="/media/img-01.png" alt="IMG">
+				</div>
+                <form action="" method="POST" class="login100-form validate-form">
+                    {% csrf_token %}
+                    <span class="login100-form-title">
+						Login
+					</span>
+                    <div style="float: left;width: 250px" class="wrap-input100 validate-input">
+                        {% if error %}
+                        {{ error }}
+                        {% endif %}
+
+
+
+                        {{form}}
+                    </div>
+                    <div class="container-login100-form-btn">
+						<button type="submit" name="submit" class="login100-form-btn" value="login" style="width:270px">
+							Login
+						</button>
+					</div>
+                <br>
+                    <p style="margin-left: 100px"><a href="{% url 'add_trainer' %}"> New? Signup </a></p>
+                    <p style="margin-left: 100px"><a href="{% url 'Accounts:login' %}"> Login as User </a></p>
+
+</form>
+            </div></div></div>
+<script src="https://colorlib.com/etc/lf/Login_v1/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="https://colorlib.com/etc/lf/Login_v1/vendor/bootstrap/js/popper.js"></script>
+	<script src="https://colorlib.com/etc/lf/Login_v1/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="https://colorlib.com/etc/lf/Login_v1/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="https://colorlib.com/etc/lf/Login_v1/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="https://colorlib.com/etc/lf/Login_v1/js/main.js"></script>
+{% endblock content %}

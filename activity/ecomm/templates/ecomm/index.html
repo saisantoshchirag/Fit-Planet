@@ -1,0 +1,36 @@
+{% extends 'base_layout.html' %}
+{%  load staticfiles %}
+
+{% block content %}
+    <div style="background-color: #000000">
+{% if all_data %}
+    <br>
+    {% for item in all_data %}
+        <div style="width: available; height: 250px; padding-left: 50px; padding-top: 20px; background-color: #FFFFFF;
+                margin-bottom: 15px; margin-top: 15px; border-radius: 12px; border: 1px solid #ffffff;
+                box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2); margin-left: 5%; margin-right: 5%;">
+        <img style="float: left; width: 200px; height: 200px; padding-right: 20px; padding-bottom: 10px" src="{{ item.image_url }}">
+            <div>
+                {{ item.id }}
+                <p>{{ item.name }}</p>
+                <p>Type:    {{ item.type }}</p>
+                <p>Cost:    {{ item.cost }}/-</p>
+{#            <button onclick="location.href='{% url 'ecomm:check' item.eq_id %}'">Check It Now</button>#}
+            {% if item.id in ids %}
+                <strong>You already own this</strong>
+            {% else %}
+                {% if item in current_order_products %}
+                <a href="{% url 'ecomm:order_summary' %}" class="btn btn-warning">Go to Cart</a>
+                {% else %}
+                <a href="{% url 'ecomm:add_to_cart' item.id %}" class="btn btn-warning">Add to Cart</a>
+                {% endif %}
+            {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <h3><a href="{% url 'ecomm:redirect' %}">For more Items visit our Site</a></h3>
+{% else %}
+    <h3>No Items are available</h3>
+{% endif %}
+    </div>
+{% endblock content %}

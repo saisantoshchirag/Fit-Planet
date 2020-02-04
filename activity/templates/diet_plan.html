@@ -1,0 +1,62 @@
+{% extends 'base_layout.html' %}
+{% block style %}
+        .img-wrapper{
+            height: 360px;
+            width: 100%;
+            background-image: url("/media/186056.jpg");
+            {#background-repeat: no-repeat;#}
+        }
+        .bmi{
+            height: 200px;
+            width: 300px;
+            float:left;
+            background-color: #0c5460;
+            margin-top: -40px;
+            font-size: 50px;
+            text-align: center;
+            padding-top: 100px;
+            vertical-align: center;
+            margin-left: 300px;
+            border-radius: 12px;
+            background-color: #fff;
+            border: 1px solid #fff;
+            box-shadow: 0 8px 12px 0 rgba(0,0,0,.2);
+        }
+        .cals{
+             height: 220px;
+            width: 300px;
+            float:right;
+            background-color: #0c5460;
+            margin-top: -40px;
+            font-size: 50px;
+            text-align: center;
+            padding-top: 80px;
+            vertical-align: center;
+            margin-right: 300px;
+            border-radius: 12px;
+            background-color: #fff;
+            border: 1px solid #fff;
+            box-shadow: 0 8px 12px 0 rgba(0,0,0,.2);
+        }
+        .link-btn{
+            background-color: #fb6340;
+            height: 60px;
+            width: 150px;
+            font-size: 20px;
+            color: #FFFFFF;
+            margin-left: 600px;
+            margin-top: 100px;
+            border:none;
+            border-radius: 20px;
+        }
+    {% endblock style %}
+{% block content %}
+{#<h1>{{ username }}</h1>#}
+{#<h1>{{ request.user.username }}</h1>#}
+<div class="img-wrapper"></div>
+<div class="bmi">{{ calories }}<br>cals</div>
+<div class="cals">BMI<br>{{ bmi }}</div>
+<div >
+
+    <button class="link-btn"><a href="http://10.0.33.30:8008/planner/show_diet_plan/{{ request.user.username }}" target="_blank" style="color: #FFFFFF;text-decoration: none">Get Diet Plan</a></button></div>
+{% endblock content %}

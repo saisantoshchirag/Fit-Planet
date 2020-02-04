@@ -1,0 +1,132 @@
+{% extends 'base_layout.html'%}
+{% block headblock %}
+<title>all articles</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32">
+  <h1><b>Articles for You</b></h1>
+{#  <p>Welcome to the blog of <span class="w3-tag">unknown</span></p>#}
+</header>
+{% ifequal myobjects|length 0 %}
+<p>You have no bookmarks!</p>
+{% endifequal %}
+<!-- Grid -->
+{% ifnotequal  myobjects|length 0 %}
+<div>
+
+    <a href="{% url 'articles:my_bookmarks' %}" ><button class="btn btn-primary" name="bookmarkbtn" value="your bookmarks">Your bookmarks</button></a>
+
+</div>
+<div class="w3-row">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+    {% for object in myobjects %}
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="{{ object.image.url }}" alt="default.png" style="width:100%;height:600px">
+    <div class="w3-container">
+      <h3><b>{{ object.title }}</b></h3>
+      <h5> Posted by {{ object.trainer_name }} on <span class="w3-opacity">{{ object.published_on }}</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>{{ object.content|linebreaks|truncatewords:30 }}</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+{#          <p><a href='{{ object.title }}'><button class="w3-button w3-padding-large w3-white w3-border" ><b>READ MORE »</b></button></a></p>#}
+            <p><a href="{% url 'articles:dview' object.title %}"><button class="w3-button w3-padding-large w3-white w3-border" ><b>READ MORE »</b></button></a></p>
+
+        </div>
+        <div class="w3-col m4 w3-hide-small">
+          <p><span class="w3-padding-large w3-right"><b>Likes  </b> <span class="w3-tag">{{ object.total_upvotes }}</span></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  {% endfor %}
+</div>
+
+
+<div class="w3-col l4">
+
+  <!-- Posts -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Popular Posts</h4>
+    </div>
+      {% for posts in likesort %}
+      <a href="{% url 'articles:dview' posts.title %}">
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+        <span class="w3-large">{{ posts.title }}</span><br>
+        <span>{{ posts.total_upvotes }} likes</span>
+      </li>
+
+    </ul>
+          </a>
+      {% endfor %}
+  </div>
+  <hr>
+
+
+</div>
+
+
+</div><br>
+
+
+</div>
+
+
+
+<div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+{% if myobjects.has_other_pages %}
+
+    {% if myobjects.has_previous %}
+      <a href="?page={{ myobjects.previous_page_number }}" class="w3-bar-item w3-button w3-hover-black">&laquo;</a>
+    {% else %}
+      <span class="w3-bar-item w3-button w3-hover-black">&laquo;</span>
+    {% endif %}
+    {% for i in myobjects.paginator.page_range %}
+      {% if myobjects.number == i %}
+       <span class="w3-bar-item w3-button w3-hover-black">{{ i }} </span>
+      {% else %}
+        <a href="?page={{ i }}" class="w3-bar-item w3-button w3-hover-black">{{ i }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if myobjects.has_next %}
+     <a  href="?page={{ myobjects.next_page_number }}" class="w3-bar-item w3-button w3-hover-black">&raquo;</a>
+    {% else %}
+     <span class="w3-bar-item w3-button w3-hover-black">&raquo;</span>
+    {% endif %}
+
+{% endif %}
+
+    </div>
+</div>
+
+<!-- Footer -->
+
+{% endifnotequal %}
+{% endblock %}

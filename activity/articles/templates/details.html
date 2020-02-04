@@ -1,0 +1,31 @@
+{% extends "base_layout.html" %}
+
+{% block content %}
+    <center>
+{% for object in context %}
+
+    <h2>{{ object.title }}</h2><br>
+     <p>
+ Posted by: {{ object.trainer_name }} on {{ object.published_on }}<br><br>
+         <img src="{{ object.image.url }}"/><br>
+ {{ object.content }}
+  <p>Likes:{{ count }}</p>
+ <div id="like">
+{% if is_liked %}
+     <a href="{% url 'articles:favourite_article' object.id %}"><i class="fas fa-heart fa-lg" ></i></a>
+ {% else %}
+ <a href="{% url 'articles:favourite_article' object.id %}"><i class="far fa-heart fa-lg" ></i></a>
+ {% endif %}
+{% if is_bookmarked %}
+     <a href="{% url 'articles:bookmark_article' object.id %}"><i class="fas fa-bookmark fa-lg" ></i></a>
+  {% else %}
+  <a href="{% url 'articles:bookmark_article' object.id%}"><i class="far fa-bookmark fa-lg" ></i></a>
+  {% endif %}
+ </div>
+
+ <br><hr>
+ </p>
+
+    {% endfor %}
+    </center>
+{% endblock content %}

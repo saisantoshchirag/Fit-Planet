@@ -1,0 +1,109 @@
+{% extends 'base_layout_trainer.html' %}
+{% block headblock %}
+<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/css/main.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  margin-top: 150px;
+  background-color: transparent;
+  width: 300px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  /*padding: 15px;*/
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: white;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #fbfbff;
+  color: black;
+  transform: rotateY(180deg);
+}
+</style>
+{% endblock %}
+{% block content %}
+{% ifequal users|length 0%}
+    <center><h3>You have no trainees yet</h3></center>
+    {% endifequal %}
+    {% ifnotequal users|length 0 %}
+ {% for i in users %}
+<div class="flip-card" style="float: right;padding-right: 5px;padding-bottom: 20px ; padding-top: 40px;margin-left: 60px;margin-bottom: 30px;margin-right: 80px;margin-top: 0"  >
+  <div class="flip-card-inner" style="background-color: white;padding-right: 100px">
+    <div class="flip-card-front" ><br>
+      <img src="{{i.profile_pic.url}}" alt="Avatar" style="height: 200px;width: 200px;border-radius: 1000px"><br><br>
+      <p style="color:black;font-size:30px">{{ i.user.username }}</p><br>
+
+    </div>
+    <div class="flip-card-back"><br>
+        height:<p style="font-size: 15px">{{ i.height }}</p><br>
+        weight:<p style="font-size: 15px">{{i.weight}}</p><br>
+        Age:<p style="font-size: 15px">{{i.age}}</p><br>
+        <!--<p>{{ forloop.counter }}</p>-->
+        <input type="hidden" value={{i.user.username}} name={{forloop.counter}}>
+
+      <br><br><br><br>
+
+    </div>
+  </div>
+</div>
+
+    {% endfor %}
+
+{% endifnotequal %}
+{% endblock %}
+{#{% extends 'base_layout_trainer.html' %}#}
+{#{% block headblock %}#}
+{#<link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v1/css/main.css">#}
+{##}
+{#<meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#<style>#}
+{#</style>#}
+{#{% endblock %}#}
+{#{% block content %}#}
+{#<img src="/media/gym.jpg" style="width:100%;height:40%"><br><br><br><br>#}
+{#<table><tr><td>#}
+{#    {% for user in users %}#}
+{#    <img src="{{user.profile_pic.url}}" alt="Avatar" style="height: 200px;width: 200px;margin-top: -350px;border:10px solid white;border-radius: 1000px"><br><br>#}
+{#</td><td style="padding-left: 300px">#}
+{##}
+{#      <h1 style="color:black">{{ user.user.username }}</h1><br>#}
+{#      <p style="font-size: 16px"> Height{{ user.height }} </p><br>#}
+{#    <p style="font-size: 16px">Weight:{{user.weight}}</p><br>#}
+{#    <p style="font-size: 16px">Age:{{user.age}}</p><br></td>#}
+{#    <td style="padding-left: 200px">#}
+{#        <p style="color: black;width:250px;font-size: 15px">{{ trainer_description }}</p>#}
+{#    </td></tr></table>#}
+{#    {% endfor %}#}
+{#{% endblock content %}#}

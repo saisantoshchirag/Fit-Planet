@@ -1,0 +1,15 @@
+{% extends 'base_layout_trainer.html' %}
+{% block headblock %}
+<meta charset="UTF-8">
+    <title>Title</title>
+{% endblock %}
+
+{% block content %}
+{% for object in jdata %}
+
+<h2>{{ object.question }}</h2><br>
+
+<p><a href='{{ object.id }}'>answer</a></p>
+
+{% endfor %}
+{% endblock %}
